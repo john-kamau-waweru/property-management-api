@@ -12,6 +12,7 @@ This is a REST API built with Laravel and it helps in property management.
     - Tenant
 
 2. The routes are defined in the routes/api.php.
+
     - REGISTER => /api/register
     - Register Payload:
       {
@@ -29,3 +30,6 @@ This is a REST API built with Laravel and it helps in property management.
       }
     - LOGOUT => /api/logout
     - The logout need to have the Bearer token in order for it to work. For testing purposes, we added the token in the Authorization Header with 'Bearer userstoken'. This token will be used by Sanctum to check if the user authorized user.
+
+    - PROPERTIES => /api/properties
+    - Adding a property is done by the landlord and the properties belong to the landlord and only they can update/delete their properties. Addition of properties takes in the 'Bearer token', name, and city. Then the properties are bound by the landlords id
