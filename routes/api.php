@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,13 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
     Route::get('properties/{propertyId}/units/{unit}', [UnitController::class, 'show']);
     Route::put('properties/{propertyId}/units/{unit}', [UnitController::class, 'update']);
     Route::delete('properties/{propertyId}/units/{unit}', [UnitController::class, 'destroy']);
+});
+
+// Tenant Routes
+Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+    Route::get('tenants', [TenantController::class, 'index']);
+    Route::post('tenants', [TenantController::class, 'store']);
+    Route::get('tenants/{tenant}', [TenantController::class, 'show']);
+    Route::put('tenants/{tenant}', [TenantController::class, 'update']);
+    Route::delete('tenants/{tenant}', [TenantController::class, 'destroy']);
 });

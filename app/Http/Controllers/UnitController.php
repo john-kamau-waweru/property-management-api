@@ -9,17 +9,19 @@ use Illuminate\Http\Request;
 class UnitController extends Controller
 {
     // create a new unit
-    public function store(Request $request){
+    public function store(Request $request, $propertyId){
+
         $request->validate([
-            'property_id' => 'required|exists:properties,id',
             'name' => 'required|string|max:255',
             'rent_amount' => 'required|numeric|min:0'
         ]);
 
+        $property = Property::findOrFail($propertyId);
+
         $unit = Unit::create([
-            'property_id' => $request->property_id,
+            'property_id' => $propertyId,
             'name' => $request->name,
-            'rent_amount' =>$request->rend_amount
+            'rent_amount' =>$request->rent_amount
         ]);
 
         return response()->json($unit, 201);
