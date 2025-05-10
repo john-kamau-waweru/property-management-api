@@ -40,3 +40,16 @@ This is a REST API built with Laravel and it helps in property management.
 
     - PAYMENTS => /api/payments
     - Payments can be done on a certain lease. Lease_id is the foreign key that shows that a certain payment belongs to a particular lease
+
+---
+
+# How to Setup
+
+1. Clone the repo to your local machine or server
+2. Create a .env file based on the .env.example
+3. Create a database in MySQL based on the database name defined in the .env.example
+4. Run composer install to install the dependencies
+5. Generate application using the following command: php artisan key:generate
+6. Since the application is using Sanctum, publish it: php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+7. Run migrations: php artisan migrate
+8. Run php artisan serve to run the application
