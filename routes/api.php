@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum', 'role:admin,landlord'])->group(function () {
 });
 
 // Leases Routes
-Route::middleware(['auth:sanctum', 'role:admin, landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin,landlord'])->group(function () {
     Route::get('leases', [LeaseController::class, 'index']);
     Route::post('leases', [LeaseController::class, 'store']);
     Route::get('leases/{lease}', [LeaseController::class, 'show']);
@@ -52,7 +52,7 @@ Route::middleware(['auth:sanctum', 'role:admin, landlord'])->group(function () {
 });
 
 // Payment Routes
-Route::middleware(['auth:sanctum', 'role:admin, agent, landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin,agent,landlord'])->group(function () {
     Route::get('payments', [PaymentController::class, 'index']);
     Route::post('payments', [PaymentController::class, 'store']);
     Route::get('payments/{payment}', [PaymentController::class, 'show']);
