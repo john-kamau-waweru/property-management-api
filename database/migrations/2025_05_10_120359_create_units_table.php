@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('property_id')->constrained('properties')->onDelete('cascade');
+            $table->string('name');
+            $table->decimal('rent_amount', 8, 2);
             $table->timestamps();
         });
     }
