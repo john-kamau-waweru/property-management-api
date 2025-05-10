@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UnitController;
@@ -37,4 +38,12 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
     Route::get('tenants/{tenant}', [TenantController::class, 'show']);
     Route::put('tenants/{tenant}', [TenantController::class, 'update']);
     Route::delete('tenants/{tenant}', [TenantController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+    Route::get('leases', [LeaseController::class, 'index']);
+    Route::post('leases', [LeaseController::class, 'store']);
+    Route::get('leases/{lease}', [LeaseController::class, 'show']);
+    Route::put('leases/{lease}', [LeaseController::class, 'update']);
+    Route::delete('leases/{lease}', [LeaseController::class, 'destroy']);
 });
