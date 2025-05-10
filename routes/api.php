@@ -16,7 +16,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 // Properties Routes
-Route::middleware(['auth:sanctum', 'landlord'])->group(function(){
+Route::middleware(['auth:sanctum', 'role:admin,landlord'])->group(function(){
     Route::get('properties', [PropertyController::class, 'index']);
     Route::post('properties', [PropertyController::class, 'store']);
     Route::get('properties/{property}', [PropertyController::class, 'show']);
@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function(){
 });
 
 // Units Routes
-Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin,landlord'])->group(function () {
     Route::get('properties/{propertyId}/units', [UnitController::class, 'index']);
     Route::post('properties/{propertyId}/units', [UnitController::class, 'store']);
     Route::get('properties/{propertyId}/units/{unit}', [UnitController::class, 'show']);
@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
 });
 
 // Tenant Routes
-Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin,landlord'])->group(function () {
     Route::get('tenants', [TenantController::class, 'index']);
     Route::post('tenants', [TenantController::class, 'store']);
     Route::get('tenants/{tenant}', [TenantController::class, 'show']);
@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
 });
 
 // Leases Routes
-Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin, landlord'])->group(function () {
     Route::get('leases', [LeaseController::class, 'index']);
     Route::post('leases', [LeaseController::class, 'store']);
     Route::get('leases/{lease}', [LeaseController::class, 'show']);
@@ -52,7 +52,7 @@ Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
 });
 
 // Payment Routes
-Route::middleware(['auth:sanctum', 'landlord'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin, agent, landlord'])->group(function () {
     Route::get('payments', [PaymentController::class, 'index']);
     Route::post('payments', [PaymentController::class, 'store']);
     Route::get('payments/{payment}', [PaymentController::class, 'show']);

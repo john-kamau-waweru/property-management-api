@@ -40,6 +40,14 @@ class User extends Authenticatable
         return $this->hasMany(Property::class);
     }
 
+    public function hasRole(string|array $roles){
+        if(is_array($roles)){
+            return in_array($this->role, $roles);
+        }
+
+        return $this->role === $roles;
+    }
+
     /**
      * Get the attributes that should be cast.
      *
