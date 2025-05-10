@@ -33,4 +33,38 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+
+
+    // Login
+
+    public function login(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!$user || !Hash::check($request->password, $user->password)){
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect'],
+            ]);
+        }
+
+        // create token
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user
+        ]);
+    }
+
+    // logout
+    public function logout(Request $request){
+        $request->user()->tokens()->delete();
+
+        return response()->json(['message' => 'Logged Out']);
+    }
 }
